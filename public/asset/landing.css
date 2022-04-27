@@ -1,0 +1,245 @@
+/* main and header containers */
+
+body{
+    height: 100%;
+}
+.main{
+    overflow: auto;
+    padding-bottom: 70px;
+}
+.card-container{
+    margin: 0 70px 0 70px;
+    position: relative;
+    width: auto;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+    background-color: var(--white);
+    border-radius: 10px;
+    display: flex;
+    padding: 50px 100px;
+    justify-content: center;
+}
+.card-heading{
+    margin: 0 80px;
+    text-align: center;
+}
+.card-heading h4{
+    font-family: 'Lexend';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 54px;
+    line-height: 68px;
+    color: var(--independence);
+}
+.banner{
+    margin: 0 70px 0 70px;
+    position: relative;
+    min-height: 100%;
+    height: auto;
+    padding: 200px 800px 0 0;
+    font-family: 'Lexend';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 76px;
+    line-height: 96%;
+    color: var(--independence);
+}
+h4{
+    padding-top: 30px;
+}
+.images{
+    background-image: url('/asset/img/landing-pic-grouped-1.png');
+    height: 700px;
+    background-repeat: no-repeat;
+    background-position-x: right;
+}
+
+/* feature containers */
+
+.bg-image{
+    background-image: url('/asset/img/pinks.svg');
+    background-size: cover;
+    width: auto;
+    height: 1000px;
+}
+.feature-container{
+    padding: 200px 0 70px 0;
+}
+.feature-title{
+    margin: 0 70px 0 70px;
+    text-align: center;
+}
+.feature-title h1{
+    color: var(--independence);
+    font-weight: 500;
+}
+.card-row{
+    margin: 0 -5px;
+    margin: 0 70px 0 70px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 70px;
+    grid-gap: 16px; 
+    justify-content: center;
+}
+.card-feature{
+    background: var(--white);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+    width: 20%;
+}
+.card-content{
+    padding: 20px;
+    margin: 20px;
+    float: left;
+}
+.card-content .btn-primary{
+    float: right;
+    margin-top: 40px;
+}
+
+/* benefit containers */
+.bg-benefit{
+    background-image: url('/asset/img/landing-pic-grouped-2.png');
+    background-size: cover;
+    width: auto;
+    height: 900px;
+}
+.benefit-title{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.benefit-content{
+    float: right;
+    margin-right: 150px;
+}
+.benefit-title h1{
+    color: var(--independence);
+    font-weight: 500;
+}
+.list-content li{
+    text-decoration: none;
+    display:inline-block;
+    flex-direction: column;;
+}
+.list-content img{
+    width: 30px;
+}
+.list-text{
+    vertical-align: middle;
+}
+
+/* plan container */
+.plan-container{
+    padding-bottom: 20px;
+    height: 1000px;
+}
+.plan-title{
+    margin: 0 70px 0 70px;
+    text-align: center;
+}
+.bg-plan{
+    background-image: url('/asset/img/purple-plan.svg');
+    width: auto;
+    height: 400px;
+}
+.plan-row{
+    margin: 0 -5px;
+    margin: 0 70px 0 70px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 70px;
+    grid-gap: 16px; 
+    justify-content: center;
+}
+.plan-column{
+    background: var(--white);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+    width: 25%;
+    padding: 40px;
+}
+.plan-column-other{
+    background: var(--independence);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+    width: 25%;
+    padding: 40px;
+}
+.plan-column-other .btn-secondary{
+    float: right;
+    margin-top: 100px;
+}
+.plan-column-other h2{
+    color: var(--lavender-blush);
+}
+.plan-column-other h3{
+    color: var(--lavender-blush);
+}
+.plan-column-other .plan-text{
+    color: var(--lavender-blush);
+}
+.plan-content .btn-primary{
+    float: right;
+    margin-top: 100px;
+}
+.plan-title h1{
+    color: var(--independence);
+}
+.list-plan li{
+    text-decoration: none;
+    display:inline-block;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.list-plan img{
+    width: 30px;
+}
+
+/* responsive */
+
+@media screen and (max-width: 1110px){
+    .banner{
+        font-size: 54px;
+    }
+    .card-heading h4{
+        font-size: 54px;
+    }
+}
+@media screen and (max-width: 920px){
+    .banner{
+        font-size: 48px;
+    }
+    .card-heading h4{
+        font-size: 48px;
+    }
+    .card-feature{
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+}
+@media screen and (max-width: 750px){
+    .banner{
+        font-size: 32px;
+    }
+    .card-heading h4{
+        font-size: 32px;
+    }
+    .card-feature{
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+}
+@media screen and (max-width: 550px){
+    .banner{
+        font-size: 24px;
+        text-align: center;
+    }
+}
