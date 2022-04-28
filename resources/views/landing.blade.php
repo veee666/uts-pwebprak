@@ -114,19 +114,19 @@
                         <h3>Basic Plan</h3>
                         <h2>$25</h2>
                         <div class="list-plan">
-                            <ul class="plan-content">
+                            <ul class="plan-list">
                                 <li><img src="asset/img/check.svg" alt="check"></li>
                                 <li><h4 class="plan-text">Over 80+ Expert Coaches</h4></li>
                             </ul>
-                            <ul class="plan-content">
+                            <ul class="plan-list">
                                 <li><img src="asset/img/check.svg" alt="check"></li>
                                 <li><h4 class="plan-text">Train Smarter and Faster than Before</h4></li>
                             </ul>
-                            <ul class="plan-content">
+                            <ul class="plan-list">
                                 <li><img src="asset/img/check.svg" alt="check"></li>
                                 <li><h4 class="plan-text">More than 30+ Rental Facilities</h4></li>
                             </ul>
-                            <ul class="plan-content">
+                            <ul class="plan-list">
                                 <li><h4 class="plan-text">See more benefits</h4></li>
                             </ul>
                         </div>
@@ -139,19 +139,19 @@
                         <h3>Premium Plan</h3>
                         <h2>$30</h2>
                         <div class="list-plan">
-                            <ul class="plan-content">
+                            <ul class="plan-list">
                                 <li><img src="asset/img/check-pink.svg" alt="check"></li>
                                 <li><h4 class="plan-text">Over 80+ Expert Coaches</h4></li>
                             </ul>
-                            <ul class="plan-content">
+                            <ul class="plan-list">
                                 <li><img src="asset/img/check-pink.svg" alt="check"></li>
                                 <li><h4 class="plan-text">Train Smarter and Faster than Before</h4></li>
                             </ul>
-                            <ul class="plan-content">
+                            <ul class="plan-list">
                                 <li><img src="asset/img/check-pink.svg" alt="check"></li>
                                 <li><h4 class="plan-text">More than 30+ Rental Facilities</h4></li>
                             </ul>
-                            <ul class="plan-content">
+                            <ul class="plan-list">
                                 <li><h4 class="plan-text">See more benefits</h4></li>
                             </ul>
                         </div><button class="btn-secondary">Join Now</button>
@@ -163,19 +163,19 @@
                         <h3>Pro Plan</h3>
                         <h2>$45</h2>
                         <div class="list-plan">
-                            <ul class="plan-content">
+                            <ul class="plan-list">
                                 <li><img src="asset/img/check.svg" alt="check"></li>
                                 <li><h4 class="plan-text">Over 80+ Expert Coaches</h4></li>
                             </ul>
-                            <ul class="plan-content">
+                            <ul class="plan-list">
                                 <li><img src="asset/img/check.svg" alt="check"></li>
                                 <li><h4 class="plan-text">Train Smarter and Faster than Before</h4></li>
                             </ul>
-                            <ul class="plan-content">
+                            <ul class="plan-list">
                                 <li><img src="asset/img/check.svg" alt="check"></li>
                                 <li><h4 class="plan-text">More than 30+ Rental Facilities</h4></li>
                             </ul>
-                            <ul class="plan-content">
+                            <ul class="plan-list">
                                 <li><h4 class="plan-text">See more benefits</h4></li>
                             </ul>
                         </div><button class="btn-primary">Join Now</button>

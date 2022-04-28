@@ -4,7 +4,6 @@ body{
     height: 100%;
 }
 .main{
-    overflow: auto;
     padding-bottom: 70px;
 }
 .card-container{
@@ -35,7 +34,7 @@ body{
     position: relative;
     min-height: 100%;
     height: auto;
-    padding: 200px 800px 0 0;
+    padding: 200px 600px 0 0;
     font-family: 'Lexend';
     font-style: normal;
     font-weight: 500;
@@ -57,9 +56,7 @@ h4{
 
 .bg-image{
     background-image: url('/asset/img/pinks.svg');
-    background-size: cover;
-    width: auto;
-    height: 1000px;
+    background-position-x: center;
 }
 .feature-container{
     padding: 200px 0 70px 0;
@@ -86,7 +83,9 @@ h4{
     background: var(--white);
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
     border-radius: 15px;
+    height: 35vh;
     width: 20%;
+    position: relative;
 }
 .card-content{
     padding: 20px;
@@ -94,8 +93,11 @@ h4{
     float: left;
 }
 .card-content .btn-primary{
-    float: right;
-    margin-top: 40px;
+    justify-content: flex-end;
+    display: flex;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
 }
 
 /* benefit containers */
@@ -112,8 +114,9 @@ h4{
     flex-wrap: wrap;
 }
 .benefit-content{
-    float: right;
-    margin-right: 150px;
+    margin: 0 70px 0 70px;
+    padding-left: 1000px;
+    position: relative;
 }
 .benefit-title h1{
     color: var(--independence);
@@ -122,7 +125,7 @@ h4{
 .list-content li{
     text-decoration: none;
     display:inline-block;
-    flex-direction: column;;
+    flex-direction: column;
 }
 .list-content img{
     width: 30px;
@@ -134,7 +137,7 @@ h4{
 /* plan container */
 .plan-container{
     padding-bottom: 20px;
-    height: 1000px;
+    height: 110vh;
 }
 .plan-title{
     margin: 0 70px 0 70px;
@@ -146,7 +149,6 @@ h4{
     height: 400px;
 }
 .plan-row{
-    margin: 0 -5px;
     margin: 0 70px 0 70px;
     display: flex;
     flex-direction: row;
@@ -154,19 +156,20 @@ h4{
     padding-top: 70px;
     grid-gap: 16px; 
     justify-content: center;
+    position: relative;
 }
 .plan-column{
     background: var(--white);
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
     border-radius: 15px;
-    width: 25%;
+    width: 28%;
     padding: 40px;
 }
 .plan-column-other{
     background: var(--independence);
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
     border-radius: 15px;
-    width: 25%;
+    width: 28%;
     padding: 40px;
 }
 .plan-column-other .btn-secondary{
@@ -196,31 +199,138 @@ h4{
     flex-wrap: wrap;
 }
 .list-plan img{
-    width: 30px;
+    width: 40px;
 }
 
 /* responsive */
 
-@media screen and (max-width: 1110px){
-    .banner{
-        font-size: 54px;
+@media screen and (max-width:1800px){
+    .plan-content img{
+        width: 40px;
     }
+    .plan-list img{
+        width: 20px;
+    }
+    .plan-list h4{
+        font-size: 14px;
+    }
+    .plan-container{
+        height: 120vh;
+    }
+    
+    .benefit-content{
+        padding-left: 800px;
+    }
+}
+
+@media screen and (max-width: 1400px){
+    .banner{
+        font-size: 48px;
+        padding: 300px 400px 0 0;
+    }
+    .card-feature{
+        flex-wrap: wrap;
+        display: block;
+        width: 50%;
+    }
+    .card-container{
+        flex-wrap: wrap;
+    }
+    .card-heading{
+        margin: 0 80px;
+    }
+    .plan-column{
+        height: 50vh;
+        flex-wrap: wrap;
+        display: block;
+        width: 100%;
+    }
+    .plan-column-other{
+        height: 50vh;
+        flex-wrap: wrap;
+        display: block;
+        width: 100%;
+    }
+    .plan-content .btn-primary{
+        margin-top: -10px;
+    }
+    .plan-content .btn-secondary{
+        margin-top: -10px;
+    }
+    .bg-benefit{
+        position: relative;
+        height: 800px;
+    }
+    .benefit-container{
+        margin-top: 800px;
+    }
+    .benefit-content{
+        padding-left: 500px;
+        padding-right: 100px;
+    }
+    .benefit-content h1{
+        font-size: 32px;
+    }
+    .benefit-content h4{
+        font-size: 16px;
+    }
+    .plan-container{
+        height: 200vh;
+    }
+}
+
+@media screen and (max-width: 1110px){
     .card-heading h4{
         font-size: 54px;
+    }
+    .images{
+        height: auto;
+        width: auto;
+        float: right;
+        padding-bottom: 200px;
+    }
+    .bg-image{
+        height: auto;
+    }
+    .bg-benefit{
+        height: 900px;
+        margin-top: 100px;
+    }
+    .benefit-container{
+        margin-top: 900px;
+    }
+    .benefit-content{
+        margin-right: 50px;
+        padding-top: 200px;
+        padding-left: 300px;
     }
 }
 @media screen and (max-width: 920px){
     .banner{
-        font-size: 48px;
+        padding: 700px 50px 0 50px;
+        text-align: center;
     }
     .card-heading h4{
         font-size: 48px;
     }
-    .card-feature{
-        width: 100%;
-        display: block;
-        margin-bottom: 20px;
-        flex-wrap: wrap;
+    .benefit-content{
+        margin-right: 50px;
+        padding-top: 400px;
+        padding-left: 200px;
+        padding-bottom: 500px;
+    }
+    .list-benefit{
+        height: max-content;
+    }
+    .bg-benefit{
+        margin-top: 100px;
+        height: 800px;
+    }
+    .benefit-container{
+        margin-top: 800px;
+    }
+    .plan-container{
+        height: 250vh;
     }
 }
 @media screen and (max-width: 750px){
@@ -230,11 +340,11 @@ h4{
     .card-heading h4{
         font-size: 32px;
     }
-    .card-feature{
-        width: 100%;
-        display: block;
-        margin-bottom: 20px;
-        flex-wrap: wrap;
+    .bg-benefit{
+        height: 800px;
+    }
+    .benefit-container{
+        margin-top: 800px;
     }
 }
 @media screen and (max-width: 550px){
