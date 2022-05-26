@@ -6,9 +6,6 @@
         <div class="main">
             <div class="images">
             <section class="banner">
-                @if(! $username==0)
-                <h1>HALO {!! $username !!} !!</h1>
-                @endif
                 Plan your Fitness Lesson and Get Your Ideal Body
                 <h4>Become a member and create your first ever fitness plan with our professional trainer. Reach your ideal body in no time!</h4>
             </section>

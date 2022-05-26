@@ -10,6 +10,18 @@
       <li><a href="/about">About us</a></li>
       <li><a href="/service">Services</a></li>
       <li><a href="#">Contact US</a></li>
-      <button class="btn-primary"><a href="{{ route('auth.logout') }}">Log Out</a></button>
+      <li><a href="#"> 
+        <div class="dropdown">
+          <button onclick="myFunction()" class="btn-primary">
+            @if(! $username==0)
+            Hello {!! $username !!}!
+            @endif
+          </button>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="{{ route('auth.logout') }}">Log Out</a>
+          </div>
+        </div>
+      </a></li>
     </ul>
 </nav>
+
