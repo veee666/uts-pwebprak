@@ -104,7 +104,7 @@
         <div class="plan-container">
             <div class="bg-plan">
                 <section class="plan-title">
-                    <h1>Get Strated with Our Favourite Plans</h1>
+                    <h1>Get Started with Our Favourite Plans</h1>
                     <h4>Make your plans and enjoy the benefits of becoming a member!</h4>
                 </section>
                 <div class="plan-row">

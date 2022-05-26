@@ -17,6 +17,7 @@ use App\Http\Controllers\MemberController;
 Route::get('/', [MemberController::class, 'landing']);
 Route::get('/about',[MemberController::class, 'about']);
 Route::get('/service', [MemberController::class, 'services']);
+Route::get('/register',[MemberController::class, 'register']);
 
 Route::prefix('dashboard')->group(function(){
     Route::get('/',[MemberController::class, 'dashboard']);

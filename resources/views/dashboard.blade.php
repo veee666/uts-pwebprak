@@ -33,6 +33,7 @@
                 <th scope="col">Usia</th>
                 <th scope="col">No Telp</th>
                 <th scope="col">Email</th>
+                <th scope="col">Foto</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -46,6 +47,7 @@
                 <td>{{ $member->umurMember }}</td>
                 <td>{{ $member->noTelpMember }}</td>
                 <td>{{ $member->emailMember }}</td>
+                <td><img src="{{ asset('storage/foto_member/'.$member->fotoMember) }}" style="width: 100px; height: 100px;">
                 <td>
                     <a href="/dashboard/member/edit/{{ $member->id }}"><button class="btn btn-primary">Edit</button></a>
                     <a href="/dashboard/member/del/{{ $member->id }}"><button class="btn btn-danger">Delete</button></a>

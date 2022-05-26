@@ -6,7 +6,7 @@
         <h1 class="h2">Enter Member Credentials</h1>
     </div>
 
-    <form method="post" action="/dashboard/addMember">
+    <form method="post" action="/dashboard/addMember" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="nama" class="form-label">Nama</label>
@@ -24,6 +24,10 @@
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" name="emailMember">
             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="foto" class="form-label">Foto Member</label>
+            <input type="file" name="foto" id="foto" class="form-control" required>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

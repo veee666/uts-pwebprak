@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Members;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class MemberController extends Controller
 {
@@ -33,8 +37,38 @@ class MemberController extends Controller
         ]);
     }
 
+    public function register(){
+        return view('register');
+    }
+
     public function store(Request $request){
-        Members::create($request->all());
+        $validator = Validator::make($request->all(), [
+            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg,jfif',
+        ]);
+        if ($validator->fails()) {
+            // flash('error')->error();
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $foto_member = 'foto_member'.'_'.$request->namaMember.'.'.$request->foto->extension();
+        $i=1;
+        while(Storage::exists('public/foto_member/'.$foto_member)){
+            $foto_member = 'foto_member'.'_'.$request->namaMember.' ('.$i.')'.'.'.$request->foto->extension();
+            $i++;
+        }
+        
+        Storage::disk('public')->put($foto_member,  File::get($request->file('foto')));
+        Storage::move('public/'.$foto_member,'public/foto_member/'.$foto_member);
+        
+        
+        Members::create([
+            'namaMember'=>$request->namaMember,
+            'password' => Hash::make($request->password),
+            'umurMember'=>$request->umurMember,
+            'noTelpMember'=>$request->noTelpMember,
+            'emailMember'=>$request->emailMember,
+            'fotoMember'=>$foto_member
+        ]);
         return redirect('/dashboard');       
     }
 
@@ -44,16 +78,48 @@ class MemberController extends Controller
     }
 
     public function update(Request $request){
+        $validator = Validator::make($request->all(), [
+            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg,jfif',
+        ]);
+
+        if ($validator->fails()) {
+            // flash('error')->error();
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $foto_member = Members::where('id',$request->id)->first();
+        $foto_member = $foto_member->fotoMember;
+        Storage::delete('public/foto_member/'.$foto_member);
+
+        $foto_member = 'foto_member'.'_'.$request->namaMember.'.'.$request->foto->extension();
+        $i=1;
+        while(Storage::exists('public/foto_member/'.$foto_member)){
+            $foto_member = 'foto_member'.'_'.$request->namaMember.' ('.$i.')'.'.'.$request->foto->extension();
+            $i++;
+        }
+
+        if(Storage::exists('public/foto_member/'.$foto_member)){
+            Storage::delete('public/foto_member/'.$foto_member);
+        }
+        
+        Storage::disk('public')->put($foto_member,  File::get($request->file('foto')));
+        Storage::move('public/'.$foto_member,'public/foto_member/'.$foto_member);
+
         Members::where('id',$request->id)->update([
             'namaMember' => $request->namaMember,
             'noTelpMember' => $request->noTelpMember,
             'umurMember' => $request->umurMember,
-            'emailMember' => $request->emailMember
+            'emailMember' => $request->emailMember,
+            'fotoMember'=> $foto_member
         ]);
         return redirect('/dashboard');
     }
 
     public function delete($id){
+        $foto_member = Members::where('id',$id)->first();
+        $foto_member = $foto_member->fotoMember;
+        Storage::delete('public/foto_member/'.$foto_member);
+
 	    Members::where('id',$id)->delete();
 	    return redirect('/dashboard');
     }
