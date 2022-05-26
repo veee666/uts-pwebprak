@@ -13,7 +13,7 @@
                     <h1 class="h2">Enter Member Credentials</h1>
                 </div>
             
-                <form method="post" action="/dashboard/addMember" enctype="multipart/form-data">
+                <form method="post" action="{{ route('client.register') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
@@ -42,6 +42,8 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
+
+                <p>Sudah Punya Akun? <a href="{{ route('showLogin') }}">Login</a></p>
         </section>
         </div>
     </div>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Members;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -12,7 +14,14 @@ use Illuminate\Support\Facades\Validator;
 class MemberController extends Controller
 {
     public function landing(){
-        return view('landing');
+        if (Auth::check()){
+            return view('logged.landing',[
+                'username' => Auth::user()->namaMember
+            ]);
+        }
+        else{
+            return view('landing',);
+        }
     }
 
     public function about(){
@@ -24,7 +33,7 @@ class MemberController extends Controller
     }
 
     public function dashboard(){
-        $member = Members::all();
+        $member = User::all();
         return view('dashboard', ['member'=>$member]);
     }
 
@@ -35,10 +44,6 @@ class MemberController extends Controller
             'umurMember' => 'umur',
             'emailMember' => 'email'
         ]);
-    }
-
-    public function register(){
-        return view('register');
     }
 
     public function store(Request $request){
@@ -61,7 +66,7 @@ class MemberController extends Controller
         Storage::move('public/'.$foto_member,'public/foto_member/'.$foto_member);
         
         
-        Members::create([
+        User::create([
             'namaMember'=>$request->namaMember,
             'password' => Hash::make($request->password),
             'umurMember'=>$request->umurMember,
@@ -73,7 +78,7 @@ class MemberController extends Controller
     }
 
     public function edit($id){
-	    $member = Members::where('id',$id)->get();
+	    $member = User::where('id',$id)->get();
 	    return view('editMember',['member' => $member]);
     }
 
@@ -87,7 +92,7 @@ class MemberController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $foto_member = Members::where('id',$request->id)->first();
+        $foto_member = User::where('id',$request->id)->first();
         $foto_member = $foto_member->fotoMember;
         Storage::delete('public/foto_member/'.$foto_member);
 
@@ -105,7 +110,7 @@ class MemberController extends Controller
         Storage::disk('public')->put($foto_member,  File::get($request->file('foto')));
         Storage::move('public/'.$foto_member,'public/foto_member/'.$foto_member);
 
-        Members::where('id',$request->id)->update([
+        User::where('id',$request->id)->update([
             'namaMember' => $request->namaMember,
             'noTelpMember' => $request->noTelpMember,
             'umurMember' => $request->umurMember,
@@ -116,11 +121,11 @@ class MemberController extends Controller
     }
 
     public function delete($id){
-        $foto_member = Members::where('id',$id)->first();
+        $foto_member = User::where('id',$id)->first();
         $foto_member = $foto_member->fotoMember;
         Storage::delete('public/foto_member/'.$foto_member);
 
-	    Members::where('id',$id)->delete();
+	    User::where('id',$id)->delete();
 	    return redirect('/dashboard');
     }
 }

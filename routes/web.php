@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MemberController;
 
 /*
@@ -17,10 +18,17 @@ use App\Http\Controllers\MemberController;
 Route::get('/', [MemberController::class, 'landing']);
 Route::get('/about',[MemberController::class, 'about']);
 Route::get('/service', [MemberController::class, 'services']);
-Route::get('/register',[MemberController::class, 'register']);
+
+Route::get('/register',[AuthController::class, 'show_regist'])->name('showRegist');
+Route::post('/register',[AuthController::class, 'register'])->name('client.register');
+
+Route::get('/login',[AuthController::class, 'showLogin'])->name('showLogin');
+Route::post('/login',[AuthController::class, 'login'])->name('auth.login');
+
+Route::get('/logout', [AuthController::class,'logout'])->middleware('auth')->name('auth.logout');
 
 Route::prefix('dashboard')->group(function(){
-    Route::get('/',[MemberController::class, 'dashboard']);
+    Route::get('/',[MemberController::class, 'dashboard'])->name('dashboard');
 
     Route::get('/addMember', [MemberController::class, 'form']);
     Route::post('/addMember', [MemberController::class, 'store']);
