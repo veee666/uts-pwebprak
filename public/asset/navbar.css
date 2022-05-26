@@ -7,17 +7,20 @@ nav{
     z-index: 999;
   }
   label.logo{
-    line-height: 100px;
-    padding: 0 100px;
+    padding: 0 0px 16px 100px;
+  }
+  label img{
+    padding-top: 16px;
+    height: auto;
   }
   nav ul{
     float: right;
+    margin-top: 16px;
     margin-right: 60px;
   }
   nav ul li{
     display: inline-block;
-    line-height: 80px;
-    margin: 0 5px;
+    margin: 0px 5px;
     text-align: center;
   }
   nav ul li a{
@@ -43,7 +46,6 @@ nav{
     font-size: 30px;
     color: var(--white);
     float: right;
-    line-height: 80px;
     margin-right: 40px;
     cursor: pointer;
     display: none;
@@ -69,7 +71,10 @@ nav{
   }
   @media (max-width: 858px){
     .checkbtn{
+      margin-top: 16px;
       display: block;
+      padding: 0 0px 16px 100px;
+      height: auto;
     }
     ul{
       position: fixed;

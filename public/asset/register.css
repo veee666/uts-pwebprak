@@ -1,0 +1,43 @@
+/* main and header containers */
+ 
+body{
+    height: 100%;
+}
+.container-register{
+    padding-bottom: 8rem;
+}
+.main-register{
+    padding-bottom: 70px;
+}
+.banner-register{
+    padding-top: 200px;
+    display: flex;
+    flex-wrap: nowrap;
+    width: auto;
+}
+.banner-register form{
+    width: 60%;
+}
+.banner-register{
+    font-family: 'Lexend';
+    font-style: normal;
+    font-weight: 500;
+    line-height: 96%;
+    color: var(--independence);
+}
+.images-register{
+    background-image: url('/asset/img/purples.svg');
+    height: 700px;
+    background-repeat: no-repeat;
+    background-position-x: right;
+}
+
+@media screen and (max-width: 920px){
+    .banner-register form{
+        width: 70%;
+    }
+    .banner-register h2{
+        text-align: center;
+    }
+
+}
