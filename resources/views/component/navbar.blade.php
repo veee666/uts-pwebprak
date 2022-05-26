@@ -10,6 +10,6 @@
       <li><a href="/about">About us</a></li>
       <li><a href="/service">Services</a></li>
       <li><a href="#">Contact US</a></li>
-      <button class="btn-primary"><a href="/dashboard">Dasboard</a></button>
+      <button class="btn-primary"><a href="/register">Register</a></button>
     </ul>
 </nav>

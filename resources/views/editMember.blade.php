@@ -6,7 +6,7 @@
         <h1 class="h2">Edit Member Credentials</h1>
     </div>
     @foreach($member as $m)
-    <form method="post" action="/dashboard/member/edit/{{ $m->id }}">
+    <form method="post" action="/dashboard/member/edit/{{ $m->id }}" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="nama" class="form-label">Nama</label>
@@ -23,6 +23,10 @@
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" name="emailMember" value="{{ $m->emailMember }}">
+        </div>
+        <div class="mb-3">
+            <label for="foto" class="form-label">Foto Member</label>
+            <input type="file" name="foto" id="foto" class="form-control" required>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

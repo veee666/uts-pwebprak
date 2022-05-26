@@ -18,6 +18,7 @@ class CreateMembersTable extends Migration
             $table->integer('umurMember');
             $table->char('noTelpMember', '13');
             $table->text('emailMember');
+            $table->text('fotoMember');
             $table->id();
             $table->timestamps();
         });
