@@ -1,36 +1,47 @@
 /* main and header containers */
-.container-regist{
+ 
+body{
+    height: 100%;
+}
+.container-login{
     padding-top: 10rem;
     padding-bottom: 18rem;
 }
-.card-regist{
+.card-login{
     padding: 32px;
     background: var(--white);
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
     border-radius: 15px;
+    height: 100%;
     width: 40rem;
 }
-.regist-header{
+.card-header{
+    background-color: transparent;
+    border-bottom: none;
     text-align: center;
 }
 .h2{
     color: var(--independence);
 }
-.p{
-    text-align: center;
-    margin-top: 10px;
+.col-pass{
+    display: flex;
+    flex-direction: row;
+    column-gap: 120px;
+    justify-content: center;
+    align-items: center;
+    margin: 64px 0px;
+    width: auto;
 }
-.card-body .btn{
-    margin: 10px 0px 30px;
-    padding: 10px 32px;
+.col-pass p{
+    margin-bottom: 0;
+}
+.form-check{
+    margin-bottom: 0;
 }
 .p a{
     text-decoration: none;
     color: var(--independence);
     font-weight: 600;
-}
-.form-label{
-    float: left;
 }
 
 @media screen and (max-width: 920px){

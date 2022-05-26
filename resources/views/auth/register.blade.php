@@ -4,48 +4,51 @@
 <link href="/css/dashboard.css" rel="stylesheet">
 
 @section('content')
-<div class="container-register">
-    <div class="main-register">
-        <div class="images-register" style= "margin-bottom: 100px;">
-        <section class="banner-register">
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" style="margin-top:-100px">
-                    <h1 class="h2">Enter Member Credentials</h1>
+<div class="container-regist">
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <div class="card-regist">
+                <div class="regist-header">
+                    <div class="h2">Create your Account</div>
+                    <div class="p">Join us for an amazing fitness routine!</div>
                 </div>
-            
-                <form method="post" action="{{ route('client.register') }}" enctype="multipart/form-data">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="nama" class="form-label">Nama</label>
-                        <input type="text" placeholder="Enter Name" class="form-control" id="nama" aria-describedby="nama" name="namaMember">
-                    </div>
-                    <div class="mb-3">
-                        <label for="psw" class="form-label">Password</label>
-                        <input type="password" placeholder="Enter Password" class="form-control" name="password" id="psw" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="noTelp" class="form-label">Nomor Telepon</label>
-                        <input type="text" placeholder="Enter Phone Number" class="form-control" id="noTelp" name="noTelpMember">
-                    </div>
-                    <div class="mb-3">
-                        <label for="umur" class="form-label">Umur</label>
-                        <input type="text" placeholder="Enter Age" class="form-control" id="umur" name="umurMember">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email"  placeholder="Enter Email" class="form-control" id="email" name="emailMember">
-                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="foto" class="form-label">Foto Member</label>
-                        <input type="file" placeholder="Input Foto"  name="foto" id="foto" class="form-control" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-
-                <p>Sudah Punya Akun? <a href="{{ route('showLogin') }}">Login</a></p>
-        </section>
+                <div class="card-body text-center">        
+                    <form method="post" action="{{ route('client.register') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="col mb-3">
+                            <label for="nama" class="form-label">Name</label>
+                            <input type="text" placeholder="example" class="form-control" id="nama" aria-describedby="nama" name="namaMember">
+                        </div>
+                        <div class="mb-3">
+                            <label for="psw" class="form-label">Password</label>
+                            <input type="password" placeholder="***********" class="form-control" name="password" id="psw" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="noTelp" class="form-label">Phone Number</label>
+                            <input type="text" placeholder="+62**********" class="form-control" id="noTelp" name="noTelpMember">
+                        </div>
+                        <div class="mb-3">
+                            <label for="umur" class="form-label">Age</label>
+                            <input type="text" placeholder="20" class="form-control" id="umur" name="umurMember">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email"  placeholder="example@gmail.com" class="form-control" id="email" name="emailMember">
+                        </div>
+                        <div class="mb-3">
+                            <label for="foto" class="form-label">Profile Picture</label>
+                            <input type="file" name="foto" id="foto" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                    </form>
+                    
+                    <div class="p">Sudah Punya Akun? <a href="{{ route('showLogin') }}">Login</a></div>                    
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+
 @endsection
