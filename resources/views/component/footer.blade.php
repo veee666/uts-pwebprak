@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="asset/footer.css">
+<link rel="stylesheet" href="/asset/footer.css">
 <div class="footer-container">
     <div class="footer">
         <div class="footer-logo">
-            <img src="asset/img/logo white.svg" alt="logo">
+            <img src="/asset/img/logo white.svg" alt="logo">
         </div>
         <div class="footer-heading foooter-1">
             <h4>Help</h4>
@@ -32,7 +32,7 @@
     </div>
     <div class="footer-bottom">
         <ul>
-            <img src="asset/img/copyright.svg" alt="copys">
+            <img src="/asset/img/copyright.svg" alt="copys">
             <li><h6>Copyright</h6>
             <li><h6>Group 2 Web Programming.Inc</h6>
         </ul>

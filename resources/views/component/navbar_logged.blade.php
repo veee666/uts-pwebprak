@@ -1,10 +1,10 @@
-<link rel="stylesheet" href="asset/navbar.css">
+<link rel="stylesheet" href="/asset/navbar.css">
 <nav>
     <input type="checkbox" id="check">
     <label for="check" class="checkbtn">
       <i class="fas fa-bars"></i>
     </label>
-    <label class="logo"><img src="asset/img/logo black.svg" alt="logo"></label>
+    <label class="logo"><img src="/asset/img/logo black.svg" alt="logo"></label>
     <ul>
       <li><a href="/">Home</a></li>
       <li><a href="/about">About us</a></li>
