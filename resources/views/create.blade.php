@@ -13,6 +13,10 @@
             <input type="text" class="form-control" id="nama" aria-describedby="nama" name="namaMember">
         </div>
         <div class="mb-3">
+            <label for="psw" class="form-label">Password</label>
+            <input type="password" placeholder="***********" class="form-control" name="password" id="psw" required>
+        </div>
+        <div class="mb-3">
             <label for="noTelp" class="form-label">Nomor Telepon</label>
             <input type="text" class="form-control" id="noTelp" name="noTelpMember">
         </div>

@@ -28,7 +28,10 @@ Route::post('/login',[AuthController::class, 'login'])->name('auth.login');
 Route::get('/logout', [AuthController::class,'logout'])->middleware('auth')->name('auth.logout');
 
 Route::prefix('dashboard')->group(function(){
-    Route::get('/',[MemberController::class, 'dashboard'])->name('dashboard');
+    Route::get('/',[MemberController::class, 'dashboard'])->name('dashboard')->middleware(['auth']);
+
+    Route::get('/login',[AuthController::class, 'loginAdmin'])->name('loginAdmin');
+    Route::post('/login',[AuthController::class, 'authLoginAdmin'])->name('auth.loginAdmin');
 
     Route::get('/addMember', [MemberController::class, 'form']);
     Route::post('/addMember', [MemberController::class, 'store']);
