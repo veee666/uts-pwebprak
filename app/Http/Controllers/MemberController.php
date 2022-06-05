@@ -8,11 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
+
 class MemberController extends Controller
 {
+    // UNTUK HOMEPAGE
     public function landing(){
         if (Auth::check()){
             return view('logged.landing',[
@@ -31,9 +34,10 @@ class MemberController extends Controller
     public function services(){
         return view('service');
     }
-
+    
+    // Untuk dashboard
     public function dashboard(){
-        $member = User::all();
+        $member = User::where('admin', false)->get();
         return view('dashboard', ['member'=>$member]);
     }
 
@@ -91,27 +95,34 @@ class MemberController extends Controller
             // flash('error')->error();
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
-        $foto_member = User::where('id',$request->id)->first();
-        $foto_member = $foto_member->fotoMember;
-        Storage::delete('public/foto_member/'.$foto_member);
-
-        $foto_member = 'foto_member'.'_'.$request->namaMember.'.'.$request->foto->extension();
-        $i=1;
-        while(Storage::exists('public/foto_member/'.$foto_member)){
-            $foto_member = 'foto_member'.'_'.$request->namaMember.' ('.$i.')'.'.'.$request->foto->extension();
-            $i++;
-        }
-
-        if(Storage::exists('public/foto_member/'.$foto_member)){
+        if($request->foto != null){
+            $foto_member = User::where('id',$request->id)->first();
+            $foto_member = $foto_member->fotoMember;
             Storage::delete('public/foto_member/'.$foto_member);
-        }
-        
-        Storage::disk('public')->put($foto_member,  File::get($request->file('foto')));
-        Storage::move('public/'.$foto_member,'public/foto_member/'.$foto_member);
 
+            $foto_member = 'foto_member'.'_'.$request->namaMember.'.'.$request->foto->extension();
+            $i=1;
+            while(Storage::exists('public/foto_member/'.$foto_member)){
+                $foto_member = 'foto_member'.'_'.$request->namaMember.' ('.$i.')'.'.'.$request->foto->extension();
+                $i++;
+            }
+            if(Storage::exists('public/foto_member/'.$foto_member)){
+                Storage::delete('public/foto_member/'.$foto_member);
+            }
+            
+            Storage::disk('public')->put($foto_member,  File::get($request->file('foto')));
+            Storage::move('public/'.$foto_member,'public/foto_member/'.$foto_member);
+        }else{$foto_member = User::where('id',$request->id)->first()->fotoMember;}
+        
+        if($request->password != null){
+            $password = Hash::make($request->password);
+        }
+        else{
+            $password = User::where('id', $request->id)->get('password');
+        }
         User::where('id',$request->id)->update([
             'namaMember' => $request->namaMember,
+            'password' => $password,
             'noTelpMember' => $request->noTelpMember,
             'umurMember' => $request->umurMember,
             'emailMember' => $request->emailMember,

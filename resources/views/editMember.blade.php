@@ -13,6 +13,10 @@
             <input type="text" class="form-control" id="nama" aria-describedby="nama" name="namaMember" value="{{ $m->namaMember }}">
         </div>
         <div class="mb-3">
+            <label for="psw" class="form-label">Password</label>
+            <input type="password" placeholder="****" class="form-control" name="password" id="psw">
+        </div>
+        <div class="mb-3">
             <label for="noTelp" class="form-label">Nomor Telepon</label>
             <input type="text" class="form-control" id="noTelp" name="noTelpMember" value="{{ $m->noTelpMember }}">
         </div>
@@ -26,7 +30,7 @@
         </div>
         <div class="mb-3">
             <label for="foto" class="form-label">Foto Member</label>
-            <input type="file" name="foto" id="foto" class="form-control" required>
+            <input type="file" name="foto" id="foto" class="form-control" placeholder="{{ $m->fotoMember }}">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

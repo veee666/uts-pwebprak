@@ -82,4 +82,39 @@ class AuthController extends Controller
         return redirect('/');
     }
 
+    public function loginAdmin(){
+        return view('admin.login');
+    }
+
+    public function authLoginAdmin(Request $request){
+        $validator = Validator::make($request->all(), [
+            'namaMember'    => 'required|string',
+            'password' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            // flash('error')->error();
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $credentials = $request->only('namaMember', 'password');
+        $nama=$request->nama;
+        if (Auth::attempt($credentials)) {
+            // Authentication passed...
+            if(Auth::user()->admin == true){
+                $request->session()->regenerate();
+                $id = Auth::user()->id;
+                return redirect('/dashboard');
+            }
+            else{
+                Auth::logout();
+                Session::flash('Anda Bukan Admin','Login Failed');
+                return redirect()->back()->withInput();
+            }
+            
+        }else{
+            Session::flash('error-password','Login Failed');
+            return redirect()->back()->withInput();
+        }
+    }
 }
