@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Members;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -19,11 +20,14 @@ class MemberController extends Controller
     public function landing(){
         if (Auth::check()){
             return view('logged.landing',[
-                'username' => Auth::user()->namaMember
+                'username' => Auth::user()->namaMember,
+                'subs' =>Subscription::all(),
             ]);
         }
         else{
-            return view('landing',);
+            return view('landing',[
+                'subs' =>Subscription::all(),
+            ]);
         }
     }
 
@@ -38,7 +42,9 @@ class MemberController extends Controller
     // Untuk dashboard
     public function dashboard(){
         $member = User::where('admin', false)->get();
-        return view('dashboard', ['member'=>$member]);
+        return view('dashboard', [
+            'member'=>$member
+        ]);
     }
 
     public function form(){

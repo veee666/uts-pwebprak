@@ -24,4 +24,13 @@ class User extends Authenticatable
         'timestamps'
     );
 
+    public function subs(){
+        return $this->belongsTo('App\Models\Subscription');
+    }
+
+    public function namaPaket($id){
+        $awal = Subscription::where('id',$id)->get('nama_paket')->first();
+        return $awal;
+    }
+
 }

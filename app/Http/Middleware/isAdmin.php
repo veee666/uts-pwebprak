@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class isAdmin
 {
@@ -17,9 +18,25 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user() &&  Auth::user()->isAdmin == true) {
-            return $next($request);
-        }
+        $credentials = $request->only('namaMember', 'password');
+        $nama=$request->nama;
+        if (Auth::attempt($credentials)) {
+                    // Authentication passed...
+                    if(Auth::user()->admin == true){
+                        $request->session()->regenerate();
+                        $id = Auth::user()->id;
+                        return redirect('/dashboard');
+                    }
+                    else{
+                        Auth::logout();
+                        Session::flash('Anda Bukan Admin','Login Failed');
+                        return redirect()->back()->withInput();
+                    }
+                    
+                }else{
+                    Session::flash('error-password','Login Failed');
+                    return redirect()->back()->withInput();
+                }
 
        return back()->with('error','Anda bukan admin');
     }

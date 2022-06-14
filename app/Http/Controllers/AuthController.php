@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Members;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -36,11 +37,11 @@ class AuthController extends Controller
         
         Storage::disk('public')->put($foto_member,  File::get($request->file('foto')));
         Storage::move('public/'.$foto_member,'public/foto_member/'.$foto_member);
-        
+        $tanggal_lahir = Carbon::parse($request->tgl_lahir)->format('Y-m-d');
         User::create([
             'namaMember'=>$request->namaMember,
             'password' => Hash::make($request->password),
-            'umurMember'=>$request->umurMember,
+            'tgl_lahir'=>$tanggal_lahir,
             'noTelpMember'=>$request->noTelpMember,
             'emailMember'=>$request->emailMember,
             'fotoMember'=>$foto_member
@@ -86,35 +87,35 @@ class AuthController extends Controller
         return view('admin.admin-login');
     }
 
-    public function authLoginAdmin(Request $request){
-        $validator = Validator::make($request->all(), [
-            'namaMember'    => 'required|string',
-            'password' => 'required',
-        ]);
+    // public function authLoginAdmin(Request $request){
+    //     $validator = Validator::make($request->all(), [
+    //         'namaMember'    => 'required|string',
+    //         'password' => 'required',
+    //     ]);
 
-        if ($validator->fails()) {
-            // flash('error')->error();
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
+    //     if ($validator->fails()) {
+    //         // flash('error')->error();
+    //         return redirect()->back()->withErrors($validator)->withInput();
+    //     }
 
-        $credentials = $request->only('namaMember', 'password');
-        $nama=$request->nama;
-        if (Auth::attempt($credentials)) {
-            // Authentication passed...
-            if(Auth::user()->admin == true){
-                $request->session()->regenerate();
-                $id = Auth::user()->id;
-                return redirect('/dashboard');
-            }
-            else{
-                Auth::logout();
-                Session::flash('Anda Bukan Admin','Login Failed');
-                return redirect()->back()->withInput();
-            }
+    //     $credentials = $request->only('namaMember', 'password');
+    //     $nama=$request->nama;
+    //     if (Auth::attempt($credentials)) {
+    //         // Authentication passed...
+    //         if(Auth::user()->admin == true){
+    //             $request->session()->regenerate();
+    //             $id = Auth::user()->id;
+    //             return redirect('/dashboard');
+    //         }
+    //         else{
+    //             Auth::logout();
+    //             Session::flash('Anda Bukan Admin','Login Failed');
+    //             return redirect()->back()->withInput();
+    //         }
             
-        }else{
-            Session::flash('error-password','Login Failed');
-            return redirect()->back()->withInput();
-        }
-    }
+    //     }else{
+    //         Session::flash('error-password','Login Failed');
+    //         return redirect()->back()->withInput();
+    //     }
+    // }
 }
