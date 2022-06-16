@@ -11,6 +11,11 @@
                     <div class="h2">Welcome back</div>
                     <div class="p">Login to your account to access your program </div>
                 </div><br>
+                {{-- @if(Session::has('error-password'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ Session::get('error-password') }}</strong>
+                </span>
+                @endif --}}
                 <div class="card-body">
                     <form method="POST" action="{{ route('auth.login') }}">
                         @csrf
@@ -19,12 +24,6 @@
 
                             <div class="col-md-6">
                                 <input id="nama" placeholder="example" type="string" class="form-control @error('nama') is-invalid @enderror" name="namaMember" value="{{ old('nama') }}" required>
-                                
-                                @error('nama')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
 

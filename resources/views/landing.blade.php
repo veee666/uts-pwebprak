@@ -107,12 +107,44 @@
                     <h1>Get Started with Our Favourite Plans</h1>
                     <h4>Make your plans and enjoy the benefits of becoming a member!</h4>
                 </section>
+                
                 <div class="plan-row">
+                    @foreach($subs as $sub)
+                @if($sub->id%2 != 0)
+                <div class="plan-column-other">
+                @else
                 <div class="plan-column">
+                @endif
                     <div class="plan-content">
+                        @if($sub->nama_paket == 'Basic Plan')
                         <img src="asset/img/health.svg" alt="Basic Plan">
-                        <h3>Basic Plan</h3>
-                        <h2>$25</h2>
+                        @elseif($sub->nama_paket == 'Premium Plan')
+                        <img src="asset/img/crown.svg" alt="Premium Plan">
+                        @else
+                        <img src="asset/img/barbell.svg" alt="Pro Plan">
+                        @endif
+                        <h3>{{ $sub->nama_paket }}</h3>
+                        <h2>Rp.{{ $sub->harga_paket }}</h2>
+                        
+                        @if($sub->id%2 != 0)
+                        <div class="list-plan">
+                            <ul class="plan-list">
+                                <li><img src="asset/img/check-pink.svg" alt="check"></li>
+                                <li><h4 class="plan-text">Over 80+ Expert Coaches</h4></li>
+                            </ul>
+                            <ul class="plan-list">
+                                <li><img src="asset/img/check-pink.svg" alt="check"></li>
+                                <li><h4 class="plan-text">Train Smarter and Faster than Before</h4></li>
+                            </ul>
+                            <ul class="plan-list">
+                                <li><img src="asset/img/check-pink.svg" alt="check"></li>
+                                <li><h4 class="plan-text">More than 30+ Rental Facilities</h4></li>
+                            </ul>
+                            <ul class="plan-list">
+                                <li><h4 class="plan-text">See more benefits</h4></li>
+                            </ul>
+                        </div>
+                        @else
                         <div class="list-plan">
                             <ul class="plan-list">
                                 <li><img src="asset/img/check.svg" alt="check"></li>
@@ -130,57 +162,13 @@
                                 <li><h4 class="plan-text">See more benefits</h4></li>
                             </ul>
                         </div>
-                        <button class="btn-primary">Join Now</button>
+                        @endif
+                        <form method="get" action="{{ route('form.subs',$sub->id) }}">
+                            <button type="submit" class="btn-primary">Join Now</button>
+                        </form>
                     </div>
                 </div>
-                <div class="plan-column-other">
-                    <div class="plan-content">
-                        <img src="asset/img/crown.svg" alt="Premium Plan">
-                        <h3>Premium Plan</h3>
-                        <h2>$30</h2>
-                        <div class="list-plan">
-                            <ul class="plan-list">
-                                <li><img src="asset/img/check-pink.svg" alt="check"></li>
-                                <li><h4 class="plan-text">Over 80+ Expert Coaches</h4></li>
-                            </ul>
-                            <ul class="plan-list">
-                                <li><img src="asset/img/check-pink.svg" alt="check"></li>
-                                <li><h4 class="plan-text">Train Smarter and Faster than Before</h4></li>
-                            </ul>
-                            <ul class="plan-list">
-                                <li><img src="asset/img/check-pink.svg" alt="check"></li>
-                                <li><h4 class="plan-text">More than 30+ Rental Facilities</h4></li>
-                            </ul>
-                            <ul class="plan-list">
-                                <li><h4 class="plan-text">See more benefits</h4></li>
-                            </ul>
-                        </div><button class="btn-secondary">Join Now</button>
-                    </div>
-                </div>
-                <div class="plan-column">
-                    <div class="plan-content">
-                        <img src="asset/img/barbell.svg" alt="Pro Plan">
-                        <h3>Pro Plan</h3>
-                        <h2>$45</h2>
-                        <div class="list-plan">
-                            <ul class="plan-list">
-                                <li><img src="asset/img/check.svg" alt="check"></li>
-                                <li><h4 class="plan-text">Over 80+ Expert Coaches</h4></li>
-                            </ul>
-                            <ul class="plan-list">
-                                <li><img src="asset/img/check.svg" alt="check"></li>
-                                <li><h4 class="plan-text">Train Smarter and Faster than Before</h4></li>
-                            </ul>
-                            <ul class="plan-list">
-                                <li><img src="asset/img/check.svg" alt="check"></li>
-                                <li><h4 class="plan-text">More than 30+ Rental Facilities</h4></li>
-                            </ul>
-                            <ul class="plan-list">
-                                <li><h4 class="plan-text">See more benefits</h4></li>
-                            </ul>
-                        </div><button class="btn-primary">Join Now</button>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -189,3 +177,51 @@
 @endsection
 
 
+{{-- <div class="plan-column-other">
+    <div class="plan-content">
+        <img src="asset/img/crown.svg" alt="Premium Plan">
+        <h3>Premium Plan</h3>
+        <h2>$30</h2>
+        <div class="list-plan">
+            <ul class="plan-list">
+                <li><img src="asset/img/check-pink.svg" alt="check"></li>
+                <li><h4 class="plan-text">Over 80+ Expert Coaches</h4></li>
+            </ul>
+            <ul class="plan-list">
+                <li><img src="asset/img/check-pink.svg" alt="check"></li>
+                <li><h4 class="plan-text">Train Smarter and Faster than Before</h4></li>
+            </ul>
+            <ul class="plan-list">
+                <li><img src="asset/img/check-pink.svg" alt="check"></li>
+                <li><h4 class="plan-text">More than 30+ Rental Facilities</h4></li>
+            </ul>
+            <ul class="plan-list">
+                <li><h4 class="plan-text">See more benefits</h4></li>
+            </ul>
+        </div><button class="btn-secondary">Join Now</button>
+    </div>
+</div>
+<div class="plan-column">
+    <div class="plan-content">
+        <img src="asset/img/barbell.svg" alt="Pro Plan">
+        <h3>Pro Plan</h3>
+        <h2>$45</h2>
+        <div class="list-plan">
+            <ul class="plan-list">
+                <li><img src="asset/img/check.svg" alt="check"></li>
+                <li><h4 class="plan-text">Over 80+ Expert Coaches</h4></li>
+            </ul>
+            <ul class="plan-list">
+                <li><img src="asset/img/check.svg" alt="check"></li>
+                <li><h4 class="plan-text">Train Smarter and Faster than Before</h4></li>
+            </ul>
+            <ul class="plan-list">
+                <li><img src="asset/img/check.svg" alt="check"></li>
+                <li><h4 class="plan-text">More than 30+ Rental Facilities</h4></li>
+            </ul>
+            <ul class="plan-list">
+                <li><h4 class="plan-text">See more benefits</h4></li>
+            </ul>
+        </div><button class="btn-primary">Join Now</button>
+    </div>
+</div> --}}

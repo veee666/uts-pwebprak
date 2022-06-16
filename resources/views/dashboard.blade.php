@@ -30,10 +30,11 @@
             <tr>
                 <th scope="col">No</th>
                 <th scope="col">Nama</th>
-                <th scope="col">Usia</th>
+                <th scope="col">Tanggal Lahir</th>
                 <th scope="col">No Telp</th>
                 <th scope="col">Email</th>
                 <th scope="col">Foto</th>
+                <th scope="col">Subscription</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -44,10 +45,21 @@
             <tr>
                 <th scope="row">{{ $nomor }}</th>
                 <td>{{ $member->namaMember }}</td>
-                <td>{{ $member->umurMember }}</td>
+                @if(!$member->tgl_lahir)
+                <td>Belum Input Tanggal Lahir</td>
+                @else
+                <td>{{ \Carbon\Carbon::parse($member->tgl_lahir)->format('d/m/Y') }}</td>
+                @endif
                 <td>{{ $member->noTelpMember }}</td>
                 <td>{{ $member->emailMember }}</td>
                 <td><img src="{{ asset('storage/foto_member/'.$member->fotoMember) }}" style="width: 100px; height: 100px;">
+                <td>
+                    @if (! $member->subs_id)
+                        -
+                    @else
+                        {{ $member->namaPaket($member->subs_id)->nama_paket }}
+                    @endif
+                </td>
                 <td>
                     <a href="/dashboard/member/edit/{{ $member->id }}"><button class="btn btn-primary">Edit</button></a>
                     <a href="/dashboard/member/del/{{ $member->id }}"><button class="btn btn-danger">Delete</button></a>

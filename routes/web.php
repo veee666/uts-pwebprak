@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SubsController;
 use App\Http\Controllers\MemberController;
 
 /*
@@ -15,9 +16,12 @@ use App\Http\Controllers\MemberController;
 |
 */
 
-Route::get('/', [MemberController::class, 'landing']);
+Route::get('/', [MemberController::class, 'landing'])->name('landing');
 Route::get('/about',[MemberController::class, 'about']);
 Route::get('/service', [MemberController::class, 'services']);
+
+Route::get('/subscription/{id}',[SubsController::class,'index'])->name('form.subs')->middleware('auth');
+Route::post('/subscription/{id}',[SubsController::class,'subscribe'])->name('subscribe');
 
 Route::get('/register',[AuthController::class, 'show_regist'])->name('showRegist');
 Route::post('/register',[AuthController::class, 'register'])->name('client.register');
@@ -28,13 +32,25 @@ Route::post('/login',[AuthController::class, 'login'])->name('auth.login');
 Route::get('/logout', [AuthController::class,'logout'])->middleware('auth')->name('auth.logout');
 
 Route::prefix('dashboard')->group(function(){
-    Route::get('/',[MemberController::class, 'dashboard'])->name('dashboard')->middleware(['auth']);
+    Route::get('/',[MemberController::class, 'dashboard'])->name('dashboard')->middleware(['auth_admin']);
 
     Route::get('/login',[AuthController::class, 'loginAdmin'])->name('loginAdmin');
-    Route::post('/login',[AuthController::class, 'authLoginAdmin'])->name('auth.loginAdmin');
+    Route::post('/login',[AuthController::class, 'login'])->name('auth.loginAdmin')->middleware('admin');
 
     Route::get('/addMember', [MemberController::class, 'form']);
     Route::post('/addMember', [MemberController::class, 'store']);
+
+    Route::get('/subscriptions', [SubsController::class, 'show'])->name('listSubs');
+
+    Route::get('/addSubs', [SubsController::class, 'showAddSubs']);
+    Route::post('/addSubs',[SubsController::class, 'addSubs']);
+
+    Route::prefix('subscription')->group(function(){
+        Route::get('/edit/{id}',[SubsController::class, 'edit']);
+        Route::post('/edit/{id}', [SubsController::class, 'update'])->name('admin.editSubs');
+
+        Route::get('/del/{id}', [SubsController::class, 'delete']); 
+    });
 
     Route::prefix('member')->group(function(){
         
@@ -45,4 +61,3 @@ Route::prefix('dashboard')->group(function(){
     });
 
 });
-

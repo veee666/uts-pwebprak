@@ -21,8 +21,8 @@
             <input type="text" class="form-control" id="noTelp" name="noTelpMember">
         </div>
         <div class="mb-3">
-            <label for="umur" class="form-label">Umur</label>
-            <input type="text" class="form-control" id="umur" name="umurMember">
+            <label for="tgl_lahir" class="form-label">Tanggal Lahir</label>
+            <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir">
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>

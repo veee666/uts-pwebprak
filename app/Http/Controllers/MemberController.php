@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Members;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -19,11 +21,14 @@ class MemberController extends Controller
     public function landing(){
         if (Auth::check()){
             return view('logged.landing',[
-                'username' => Auth::user()->namaMember
+                'username' => Auth::user()->namaMember,
+                'subs' =>Subscription::all(),
             ]);
         }
         else{
-            return view('landing',);
+            return view('landing',[
+                'subs' =>Subscription::all(),
+            ]);
         }
     }
 
@@ -38,7 +43,9 @@ class MemberController extends Controller
     // Untuk dashboard
     public function dashboard(){
         $member = User::where('admin', false)->get();
-        return view('dashboard', ['member'=>$member]);
+        return view('dashboard', [
+            'member'=>$member
+        ]);
     }
 
     public function form(){
@@ -69,11 +76,12 @@ class MemberController extends Controller
         Storage::disk('public')->put($foto_member,  File::get($request->file('foto')));
         Storage::move('public/'.$foto_member,'public/foto_member/'.$foto_member);
         
+        $tanggal_lahir = Carbon::parse($request->tgl_lahir)->format('Y-m-d');
         
         User::create([
             'namaMember'=>$request->namaMember,
             'password' => Hash::make($request->password),
-            'umurMember'=>$request->umurMember,
+            'tgl_lahir' => $tanggal_lahir,
             'noTelpMember'=>$request->noTelpMember,
             'emailMember'=>$request->emailMember,
             'fotoMember'=>$foto_member
@@ -120,11 +128,14 @@ class MemberController extends Controller
         else{
             $password = User::where('id', $request->id)->get('password');
         }
+
+        $tanggal_lahir = Carbon::parse($request->tgl_lahir)->format('Y-m-d');
+
         User::where('id',$request->id)->update([
             'namaMember' => $request->namaMember,
             'password' => $password,
             'noTelpMember' => $request->noTelpMember,
-            'umurMember' => $request->umurMember,
+            'tgl_lahir' => $tanggal_lahir,
             'emailMember' => $request->emailMember,
             'fotoMember'=> $foto_member
         ]);
