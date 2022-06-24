@@ -20,7 +20,7 @@ class AdminSeeder extends Seeder
             
                 'namaMember' => 'admin',
                 'noTelpMember' => '089656578900',
-                'umurMember' => 21,
+                // 'umurMember' => 21,
                 'emailMember' => 'admin@gmail.com',
                 'password' => Hash::make('admin123'),
                 'fotoMember' => 'foto_member_admin.jpg',

@@ -31,8 +31,11 @@ Route::post('/login',[AuthController::class, 'login'])->name('auth.login');
 
 Route::get('/logout', [AuthController::class,'logout'])->middleware('auth')->name('auth.logout');
 
-Route::prefix('dashboard')->group(function(){
-    Route::get('/',[MemberController::class, 'dashboard'])->name('dashboard')->middleware(['auth_admin']);
+Route::get('/',[MemberController::class, 'dashboardUser'])->name('dashboard-user')->middleware(['auth']);
+
+
+Route::prefix('dashboard-admin')->group(function(){
+    Route::get('/',[MemberController::class, 'dashboardAdmin'])->name('dashboard-admin')->middleware(['auth_admin']);
 
     Route::get('/login',[AuthController::class, 'loginAdmin'])->name('loginAdmin');
     Route::post('/login',[AuthController::class, 'login'])->name('auth.loginAdmin')->middleware('admin');
@@ -49,7 +52,8 @@ Route::prefix('dashboard')->group(function(){
         Route::get('/edit/{id}',[SubsController::class, 'edit']);
         Route::post('/edit/{id}', [SubsController::class, 'update'])->name('admin.editSubs');
 
-        Route::get('/del/{id}', [SubsController::class, 'delete']); 
+        // Route::get('/del/{id}', [SubsController::class, 'delete']);
+        Route::post('/del', [SubsController::class, 'delete'])->name('admin.delSubs'); 
     });
 
     Route::prefix('member')->group(function(){
@@ -57,7 +61,8 @@ Route::prefix('dashboard')->group(function(){
         Route::get('/edit/{id}',[MemberController::class, 'edit']);
         Route::post('/edit/{id}', [MemberController::class, 'update']);
 
-        Route::get('/del/{id}', [MemberController::class, 'delete']);         
+        // Route::get('/del/{id}', [MemberController::class, 'delete']);
+        Route::post('/del', [MemberController::class, 'delete'])->name('admin.delMember');        
     });
 
 });

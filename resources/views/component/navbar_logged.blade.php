@@ -18,6 +18,7 @@
             @endif
           </button>
           <div id="myDropdown" class="dropdown-content">
+            {{-- <a href="{{ route('dashboardUser') }}">Dashboard</a> --}}
             <a href="{{ route('auth.logout') }}">Log Out</a>
           </div>
         </div>

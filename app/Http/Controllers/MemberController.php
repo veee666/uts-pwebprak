@@ -41,9 +41,9 @@ class MemberController extends Controller
     }
     
     // Untuk dashboard
-    public function dashboard(){
+    public function dashboardAdmin(){
         $member = User::where('admin', false)->get();
-        return view('dashboard', [
+        return view('dashboard-admin', [
             'member'=>$member
         ]);
     }
@@ -86,7 +86,7 @@ class MemberController extends Controller
             'emailMember'=>$request->emailMember,
             'fotoMember'=>$foto_member
         ]);
-        return redirect('/dashboard');       
+        return redirect('/dashboard-admin');       
     }
 
     public function edit($id){
@@ -139,15 +139,15 @@ class MemberController extends Controller
             'emailMember' => $request->emailMember,
             'fotoMember'=> $foto_member
         ]);
-        return redirect('/dashboard');
+        return redirect('/dashboard-admin');
     }
 
-    public function delete($id){
-        $foto_member = User::where('id',$id)->first();
+    public function delete(Request $request){
+        $foto_member = User::where('id',$request->member_delete)->first();
         $foto_member = $foto_member->fotoMember;
         Storage::delete('public/foto_member/'.$foto_member);
 
-	    User::where('id',$id)->delete();
-	    return redirect('/dashboard');
+	    User::where('id',$request->member_delete)->delete();
+	    return redirect('/dashboard-admin');
     }
 }

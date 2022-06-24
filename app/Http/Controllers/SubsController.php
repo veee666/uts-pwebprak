@@ -53,12 +53,13 @@ class SubsController extends Controller
     }
 
     public function addSubs(Request $request){
-        Subscription::create([
-            'nama_paket' => $request->nama_paket,
-            'harga_paket' => $request->harga_paket
-        ]);
-
-        return redirect()->route('listSubs');
+            Subscription::create([
+                'nama_paket' => $request->nama_paket,
+                'harga_paket' => $request->harga_paket
+            ]);
+            
+            return redirect()->route('listSubs');
+            
     }
 
     public function edit($id){
@@ -76,8 +77,8 @@ class SubsController extends Controller
         return redirect()->route('listSubs');
     }
 
-    public function delete($id){
-        Subscription::where('id', $id)->delete();
+    public function delete(Request $request){
+        Subscription::where('id', $request->subs_delete)->delete();
         return redirect()->route('listSubs');
     }
 }

@@ -6,7 +6,7 @@
         <h1 class="h2">Edit Subscription Details</h1>
     </div>
 
-    <form method="post" action="{{ route('admin.editSubs',$subs->id) }}" enctype="multipart/form-data">
+    <form method="post" action="{{ route('admin.editSubs',$subs->id) }}" id="editsubs" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="nama_paket" class="form-label">Nama Paket</label>
@@ -16,6 +16,24 @@
             <label for="harga_paket" class="form-label">Harga Paket</label>
             <input type="text" class="form-control" id="harga_paket" name="harga_paket" required value="{{ $subs->harga_paket }}">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <input class="btn btn-primary" type="submit" value="Submit">
     </form>
+
+    <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Ubah Subscription?</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Apakah anda yakin ingin mengubah subscription?
+            </div>
+            <div class="modal-footer">
+              <button type="submit" id="edit" value="SUBMIT" class="btn btn-primary">Iya</button>
+              <a href="/dashboard-admin/addSubs" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</a>
+            </div>
+          </div>
+        </div>
+      </div>
 @endsection

@@ -25,7 +25,7 @@ class isAdmin
                     if(Auth::user()->admin == true){
                         $request->session()->regenerate();
                         $id = Auth::user()->id;
-                        return redirect('/dashboard');
+                        return redirect('/dashboard-admin');
                     }
                     else{
                         Auth::logout();
