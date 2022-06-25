@@ -1,12 +1,12 @@
-@extends('template.dash-template')
+@extends('template.user.dash-template')
 
 @section('dash-content')
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Edit Member Credentials</h1>
+        <h1 class="h2">Edit Profile</h1>
     </div>
     @foreach($member as $m)
-    <form method="post" action="/dashboard-admin/member/edit/{{ $m->id }}" enctype="multipart/form-data" id="editmember">
+    <form method="post"enctype="multipart/form-data" id="editmember" action="{{ route('editMember',Auth::user()->id) }}">
         @csrf
         <div class="mb-3">
             <label for="nama" class="form-label">Nama</label>
@@ -14,7 +14,7 @@
         </div>
         <div class="mb-3">
             <label for="psw" class="form-label">Password</label>
-            <input type="password" placeholder="****" class="form-control" name="password" id="psw" data-msg="Password harus diisi">
+            <input type="password" placeholder="****" class="form-control" name="password" id="psw">
         </div>
         <div class="mb-3">
             <label for="noTelp" class="form-label">Nomor Telepon</label>
@@ -29,10 +29,11 @@
             <input type="email" class="form-control" id="email" name="emailMember" value="{{ $m->emailMember }}" data-msg="Email member harus diisi">
         </div>
         <div class="mb-3">
-            <label for="foto" class="form-label">Foto Member</label>
-            <input type="file" name="foto" id="foto" class="form-control" placeholder="{{ $m->fotoMember }}" data-msg="Foto member harus diisi">
+            <label for="foto" class="form-label">Foto Member</label><br>
+            <img src="{{ asset('storage/foto_member/'.$m->fotoMember) }}" style="width: 320px; height: 240px;">
+            <input type="file" name="foto" id="foto" class="form-control">
         </div>
-        <input class="btn btn-primary" type="submit" value="Submit">
+        <input class="btn btn-primary" type="submit" value="Save">
     </form>
     <div class="modal fade" id="memberedit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">

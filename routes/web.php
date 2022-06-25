@@ -31,7 +31,14 @@ Route::post('/login',[AuthController::class, 'login'])->name('auth.login');
 
 Route::get('/logout', [AuthController::class,'logout'])->middleware('auth')->name('auth.logout');
 
-Route::get('/',[MemberController::class, 'dashboardUser'])->name('dashboard-user')->middleware(['auth']);
+Route::prefix('/{id}')->group (function(){
+    Route::get('/dashboard',[MemberController::class, 'dashboardUser'])->name('dashboard-user')->middleware(['auth']);
+
+    Route::get('/edit-profile',[MemberController::class, 'editProfile'])->name('edit-profile');
+    Route::delete('/stop-subscription',[MemberController::class, 'stopSubscription'])->name('stop_subscription');
+});
+
+
 
 
 Route::prefix('dashboard-admin')->group(function(){
@@ -59,7 +66,7 @@ Route::prefix('dashboard-admin')->group(function(){
     Route::prefix('member')->group(function(){
         
         Route::get('/edit/{id}',[MemberController::class, 'edit']);
-        Route::post('/edit/{id}', [MemberController::class, 'update']);
+        Route::post('/edit/{id}', [MemberController::class, 'update'])->name('editMember');
 
         // Route::get('/del/{id}', [MemberController::class, 'delete']);
         Route::post('/del', [MemberController::class, 'delete'])->name('admin.delMember');        

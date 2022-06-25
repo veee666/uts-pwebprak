@@ -10,6 +10,7 @@
       <li><a href="/about">About us</a></li>
       <li><a href="/service">Services</a></li>
       <li><a href="#">Contact US</a></li>
+      <li><a href="{{ route('dashboard-user',Auth::user()->id) }}">Profile</a></li>
       <li><a href="#"> 
         <div class="dropdown">
           <button onclick="myFunction()" class="btn-primary">

@@ -8,10 +8,6 @@
         <div class="btn-group me-2">
             <a href="/dashboard-admin/addMember"><button class="btn" style="background-color: #424874; color:aliceblue">Add Member</button></a>
         </div>
-        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-          <span data-feather="calendar"></span>
-          This week
-        </button>
       </div>
     </div>
     <div>

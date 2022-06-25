@@ -21,7 +21,12 @@ class AuthController extends Controller
 
     public function register(Request $request){
         $validator = Validator::make($request->all(), [
-            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg,jfif',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg,jfif',
+            'password'=>'required',
+            'namaMember' => 'required|regex:/^[a-z\d\-_\s]+$/i',
+            'noTelpMember' => 'required|numeric',
+            'emailMember' => 'required',
+            'tgl_lahir' => 'required'
         ]);
         if ($validator->fails()) {
             // flash('error')->error();

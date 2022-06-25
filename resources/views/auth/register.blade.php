@@ -18,26 +18,44 @@
                         <div class="col mb-3">
                             <label for="nama" class="form-label">Name</label>
                             <input type="text" placeholder="example" class="form-control" id="nama" aria-describedby="nama" name="namaMember">
+                            @error('namaMember')
+                                <h6>{{ $message }}</h6>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="psw" class="form-label">Password</label>
-                            <input type="password" placeholder="***********" class="form-control" name="password" id="psw" required>
+                            <input type="password" placeholder="***********" class="form-control" name="password" id="psw" >
+                            @error('password')
+                                <h6>{{ $message }}</h6>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="noTelp" class="form-label">Phone Number</label>
                             <input type="text" placeholder="+62**********" class="form-control" id="noTelp" name="noTelpMember">
+                            @error('noTelpMember')
+                                <h6>{{ $message }}</h6>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="tgl_lahir" class="form-label">Tanggal Lahir</label>
                             <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir">
+                            @error('tgl_lahir')
+                                <h6>{{ $message }}</h6>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email"  placeholder="example@gmail.com" class="form-control" id="email" name="emailMember">
+                            @error('emailMember')
+                                <h6>{{ $message }}</h6>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="foto" class="form-label">Profile Picture</label>
-                            <input type="file" name="foto" id="foto" class="form-control" required>
+                            <input type="file" name="foto" accept="image/*"id="foto" class="form-control">
+                            @error('foto')
+                                <h6>{{ $message }}</h6>
+                            @enderror
                         </div>
                         <button type="submit" class="btn btn-primary">Sign Up</button>
                     </form>
