@@ -65,11 +65,9 @@ $("#addmember").validate({
 $("#editmember").validate({
     rules: {
       namaMember: "required",
-      password: "required",
       noTelpMember: "required",
       tgl_lahir: "required",
       emailMember: "required",
-      foto: "required",
     },
     messages: {
         namaMember: getMsg('#nama'),

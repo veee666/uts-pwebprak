@@ -1,20 +1,11 @@
-@extends('template.dash-template')
+@extends('template.user.dash-template')
 
 @section('dash-content')
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
       <h1 class="h2">Profile</h1>
-      {{-- <div class="btn-toolbar mb-2 mb-md-0">
-        <div class="btn-group me-2">
-            <a href="/dashboard-user/addMember"><button class="btn" style="background-color: #424874; color:aliceblue">Add Member</button></a>
-        </div>
-        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-          <span data-feather="calendar"></span>
-          This week
-        </button>
-      </div> --}}
-    {{-- </div> --}}
-    {{-- <div>
+    </div>
+    <div>
       <style>
         th{
             
@@ -24,6 +15,30 @@
             background-color:#808080;
         }
     </style>
+        <img src="{{ asset('storage/foto_member/'.$member->fotoMember) }}" style="width: 360px; height: 270px;"><br>
+        <h3>Nama</h3>
+        {{ $member->namaMember }}<br>
+        <h3>Tanggal Lahir</h3>
+        {{ $tgl_lahir }}<br>
+        <h3>Email</h3>
+        {{ $member->emailMember }}<br>
+        <h3>Nomor Telepon</h3>
+        {{ $member->noTelpMember }}<br>
+        <h3>Subscription</h3>
+        @if($member->subs_id)
+            {{ $member->namaPaket(Auth::user()->subs_id)->nama_paket }}
+            <form method="post" action="{{ route('stop_subscription',Auth::user()->id) }}">
+                @csrf
+                @method('delete')
+                <button class="btn btn-danger" type="submit">Stop Subscription</button>
+            </form>
+        @else 
+            <p>You have not yet subscribe to any plan</p>
+        @endif
+    </div>
+@endsection
+
+{{-- 
     <table class="table table-hover table-light" cellpadding="10">
         @csrf
         <thead class="thead">
@@ -69,5 +84,3 @@
             @endforeach
         </tbody>
     </table> --}}
-    </div>
-@endsection

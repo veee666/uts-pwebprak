@@ -40,7 +40,31 @@ class MemberController extends Controller
         return view('service');
     }
     
-    // Untuk dashboard
+    // Fitur user
+    public function dashboardUser(){
+        $member = User::where('id',Auth::user()->id)->first();
+        $tgl_lahir=Carbon::parse($member->tgl_lahir)->format('d-m-Y');
+        return view('logged.dashboard-user',[
+            'member'=>$member,
+            'tgl_lahir'=>$tgl_lahir
+        ]);
+    }
+
+    public function editProfile($id){
+        $member = User::where('id',$id)->get();
+        return view('logged.edit-profile',[ 'member'=>$member ]);
+    }
+
+    public function stopSubscription(Request $request){
+        $member = User::where('id',$request->id)->update([
+            'subs_id'=>null
+        ]);
+        return redirect()->back();
+    }
+
+
+
+    // Untuk dashboard admin
     public function dashboardAdmin(){
         $member = User::where('admin', false)->get();
         return view('dashboard-admin', [
@@ -124,22 +148,22 @@ class MemberController extends Controller
         
         if($request->password != null){
             $password = Hash::make($request->password);
-        }
-        else{
-            $password = User::where('id', $request->id)->get('password');
+            User::where('id',$request->id)->update(['password' => $password,]);   
         }
 
         $tanggal_lahir = Carbon::parse($request->tgl_lahir)->format('Y-m-d');
 
         User::where('id',$request->id)->update([
             'namaMember' => $request->namaMember,
-            'password' => $password,
             'noTelpMember' => $request->noTelpMember,
             'tgl_lahir' => $tanggal_lahir,
             'emailMember' => $request->emailMember,
             'fotoMember'=> $foto_member
         ]);
-        return redirect('/dashboard-admin');
+
+        if(Auth::user()->admin == true){
+            return redirect('/dashboard-admin');
+        }else{return redirect()->route('dashboard-user',Auth::user()->id);}
     }
 
     public function delete(Request $request){
