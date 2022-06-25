@@ -15,26 +15,42 @@
             background-color:#808080;
         }
     </style>
-        <img src="{{ asset('storage/foto_member/'.$member->fotoMember) }}" style="width: 360px; height: 270px;"><br>
-        <h3>Nama</h3>
-        {{ $member->namaMember }}<br>
-        <h3>Tanggal Lahir</h3>
-        {{ $tgl_lahir }}<br>
-        <h3>Email</h3>
-        {{ $member->emailMember }}<br>
-        <h3>Nomor Telepon</h3>
-        {{ $member->noTelpMember }}<br>
-        <h3>Subscription</h3>
-        @if($member->subs_id)
-            {{ $member->namaPaket(Auth::user()->subs_id)->nama_paket }}
-            <form method="post" action="{{ route('stop_subscription',Auth::user()->id) }}">
-                @csrf
-                @method('delete')
-                <button class="btn btn-danger" type="submit">Stop Subscription</button>
-            </form>
-        @else 
-            <p>You have not yet subscribe to any plan</p>
-        @endif
+    <div class="container px-4">
+        <div class="row gx-2">
+          <div class="col-sm-3 col-md-4">
+            <img src="{{ asset('storage/foto_member/'.$member->fotoMember) }}" class="img-fluid rounded">
+          </div>
+          <div class="col">
+            <dl class="row">
+                <dt class="col-sm-3">Nama</dt>
+                <dd class="col-sm-9">{{ $member->namaMember }}</dd>
+              
+                <dt class="col-sm-3">Tanggal lahir</dt>
+                <dd class="col-sm-9">{{ $tgl_lahir }}</dd>
+              
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9">{{ $member->emailMember }}</dd>
+
+                <dt class="col-sm-3">Nomor telp</dt>
+                <dd class="col-sm-9">{{ $member->noTelpMember }}</dd>
+                
+                <dt class="col-sm-3">Subscription</dt>
+                <dd class="col-sm-9">
+                    @if($member->subs_id)
+                    {{ $member->namaPaket(Auth::user()->subs_id)->nama_paket }}
+                    <form method="post" action="{{ route('stop_subscription',Auth::user()->id) }}">
+                        @csrf
+                        @method('delete')
+                        <button class="btn btn-danger" type="submit">Stop Subscription</button>
+                    </form>
+                @else 
+                    <p>You have not yet subscribe to any plan</p>
+                @endif
+                </dd>
+              </dl>
+          </div>
+          </div>
+        </div>
     </div>
 @endsection
 

@@ -10,7 +10,6 @@
       <li><a href="/about">About us</a></li>
       <li><a href="/service">Services</a></li>
       <li><a href="#">Contact US</a></li>
-      <li><a href="{{ route('dashboard-user',Auth::user()->id) }}">Profile</a></li>
       <li><a href="#"> 
         <div class="dropdown">
           <button onclick="myFunction()" class="btn-primary">
@@ -19,7 +18,7 @@
             @endif
           </button>
           <div id="myDropdown" class="dropdown-content">
-            {{-- <a href="{{ route('dashboardUser') }}">Dashboard</a> --}}
+            <a href="{{ route('dashboard-user',Auth::user()->id) }}">Profile</a>
             <a href="{{ route('auth.logout') }}">Log Out</a>
           </div>
         </div>
