@@ -34,7 +34,7 @@
         <ul>
             <img src="/asset/img/copyright.svg" alt="copys">
             <li><h6>Copyright</h6>
-            <li><h6>Group 2 Web Programming.Inc</h6>
+            <li><h6>Group 3 Web Programming.Inc</h6>
         </ul>
     </div>
 </div>

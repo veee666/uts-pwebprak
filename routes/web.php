@@ -35,7 +35,7 @@ Route::prefix('/{id}')->group (function(){
     Route::get('/dashboard',[MemberController::class, 'dashboardUser'])->name('dashboard-user')->middleware(['auth']);
 
     Route::get('/edit-profile',[MemberController::class, 'editProfile'])->name('edit-profile');
-    Route::delete('/stop-subscription',[MemberController::class, 'stopSubscription'])->name('stop_subscription');
+    Route::post('/stop-subscription',[MemberController::class, 'stopSubscription'])->name('stop_subscription');
 });
 
 

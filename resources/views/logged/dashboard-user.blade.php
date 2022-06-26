@@ -40,14 +40,36 @@
                     {{ $member->namaPaket(Auth::user()->subs_id)->nama_paket }}
                     <form method="post" action="{{ route('stop_subscription',Auth::user()->id) }}">
                         @csrf
-                        @method('delete')
-                        <button class="btn btn-danger" type="submit">Stop Subscription</button>
+                        <button type="button" class="btn btn-danger deleteBtn" id="delsub" value="{{ $member->namaPaket(Auth::user()->subs_id)->nama_paket }}" href="">Stop Subscription</button>
                     </form>
                 @else 
                     <p>You have not yet subscribe to any plan</p>
                 @endif
                 </dd>
               </dl>
+              <div class="modal fade" id="delete_member_subs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <form action="{{ route('stop_subscription',Auth::user()->id) }}" method="POST">
+                        @csrf
+                        {{-- @method('delete') --}}
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Hapus Subscription?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                              <input type="hidden" name="subs_delete_member" id="id_subs">
+                            Apakah anda yakin ingin menghapus pembelian subscription? Anda masih dapat menikmati benefit dari subscription yang sudah dibeli sampai batas akhir subscription.
+                          </div>
+                          <div class="modal-footer">
+                              {{-- <button type="submit" id="del" class="btn btn-danger">Iya</button> --}}
+                              <button id="btnDeleteMember" type="submit" class="btn btn-danger">Iya</button></a>
+                              <a href="/dashboard-admin/member" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</a>
+                          </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
           </div>
           </div>
         </div>
