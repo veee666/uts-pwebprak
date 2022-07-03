@@ -34,18 +34,15 @@ Route::get('/logout', [AuthController::class,'logout'])->middleware('auth')->nam
 Route::prefix('/{id}')->group (function(){
     Route::get('/dashboard',[MemberController::class, 'dashboardUser'])->name('dashboard-user')->middleware(['auth']);
 
-    Route::get('/edit-profile',[MemberController::class, 'editProfile'])->name('edit-profile');
-    Route::delete('/stop-subscription',[MemberController::class, 'stopSubscription'])->name('stop_subscription');
+    Route::get('/edit-profile',[MemberController::class, 'editProfile'])->name('edit-profile')->middleware(['auth']);
+    Route::delete('/stop-subscription',[MemberController::class, 'stopSubscription'])->name('stop_subscription')->middleware(['auth']);
 });
 
+Route::get('/dashboard-admin/login',[AuthController::class, 'loginAdmin'])->name('loginAdmin');
+Route::post('/dashboard-admin/login',[AuthController::class, 'login'])->name('auth.loginAdmin')->middleware('admin');
 
-
-
-Route::prefix('dashboard-admin')->group(function(){
+Route::group(['prefix' => 'dashboard-admin', 'middleware'=>'auth_admin'], function(){
     Route::get('/',[MemberController::class, 'dashboardAdmin'])->name('dashboard-admin')->middleware(['auth_admin']);
-
-    Route::get('/login',[AuthController::class, 'loginAdmin'])->name('loginAdmin');
-    Route::post('/login',[AuthController::class, 'login'])->name('auth.loginAdmin')->middleware('admin');
 
     Route::get('/addMember', [MemberController::class, 'form']);
     Route::post('/addMember', [MemberController::class, 'store']);

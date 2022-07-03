@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Subscription;
+use PDO;
 use App\Models\User;
+use App\Models\Langganan;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use PDO;
 
 class SubsController extends Controller
 {
@@ -37,6 +38,13 @@ class SubsController extends Controller
         ]);
         $user->save();
 
+        Langganan::create([
+            'user_id'=>$user->id,
+            'subs_id'=> $request->id,
+            'end_subscription'=>Carbon::now()->addMonths(1)->format('Y-m-d'),
+        ]);
+        $langganan = Langganan::where('id',$user_id)->first();
+        
         return redirect()->route('landing');
 
     }

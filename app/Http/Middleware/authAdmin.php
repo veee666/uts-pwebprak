@@ -19,8 +19,12 @@ class authAdmin
     {
         if(! Auth::check()){
             return redirect()->route('loginAdmin');
+        } else{
+            if(Auth::user()->admin == true){
+                return $next($request);
+            } else{
+                return redirect()->route('dashboard-user',Auth::user()->id)->with('error', 'anda bukan admin');
+            }
         }
-        
-        return $next($request);
     }
 }
