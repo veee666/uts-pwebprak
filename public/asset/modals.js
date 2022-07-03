@@ -108,5 +108,15 @@ $(document).ready(function(){
     });
 });
 
+$(document).ready(function(){
+  $('.deleteBtn').click(function(e) {
+      e.preventDefault();
+
+      var subs_id = $(this).val();
+      $('#id_subs').val(subs_id);
+
+      $('#delete_member_subs').modal('show');
+  });
+});
 
 

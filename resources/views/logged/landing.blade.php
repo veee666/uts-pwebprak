@@ -110,19 +110,19 @@
             
             <div class="plan-row">
                 @foreach($subs as $sub)
-            @if($sub->id%2 != 0)
-            <div class="plan-column-other">
-            @else
-            <div class="plan-column">
-            @endif
-                <div class="plan-content">
-                    @if($sub->nama_paket == 'Basic Plan')
-                    <img src="asset/img/health.svg" alt="Basic Plan">
-                    @elseif($sub->nama_paket == 'Premium Plan')
-                    <img src="asset/img/crown.svg" alt="Premium Plan">
-                    @else
-                    <img src="asset/img/barbell.svg" alt="Pro Plan">
-                    @endif
+                        @if($sub->id%2 != 0)
+                            <div class="plan-column-other">
+                        @else
+                            <div class="plan-column">
+                        @endif
+                    <div class="plan-content">
+                        @if($sub->nama_paket == 'Basic Plan')
+                        <img src="asset/img/health.svg" alt="Basic Plan">
+                        @elseif($sub->nama_paket == 'Premium Plan')
+                        <img src="asset/img/crown.svg" alt="Premium Plan">
+                        @else
+                        <img src="asset/img/barbell.svg" alt="Pro Plan">
+                        @endif
                     <h3>{{ $sub->nama_paket }}</h3>
                     <h2>Rp.{{ $sub->harga_paket }}</h2>
                     
@@ -183,6 +183,8 @@
             @endforeach
         </div>
     </div>
+</div>
+</div>
 </div>
         
 

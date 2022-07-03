@@ -30,7 +30,7 @@
         </div>
         <div class="mb-3">
             <label for="foto" class="form-label">Foto Member</label><br>
-            <img src="{{ asset('storage/foto_member/'.$m->fotoMember) }}" style="width: 320px; height: 240px;">
+            <img src="{{ asset('storage/foto_member/'.$m->fotoMember) }}" class="img-fluid rounded" style="width: 240px; height: 240px;">
             <input type="file" name="foto" id="foto" class="form-control">
         </div>
         <input class="btn btn-primary" type="submit" value="Save">
