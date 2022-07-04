@@ -33,4 +33,7 @@ class User extends Authenticatable
         return $awal;
     }
 
+    public function history(){
+        return $this->hasMany('App\Models\Langganan','user_id','id');
+    }
 }

@@ -29,6 +29,13 @@
           </a>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('listHistory') }}" style="color: #fafafa">
+            <span data-feather="file"></span>
+            Subscription History
+          </a>
+        </li>
+
       </ul>
     </div>
 </nav>

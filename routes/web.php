@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SubsController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\LanggananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +68,10 @@ Route::group(['prefix' => 'dashboard-admin', 'middleware'=>'auth_admin'], functi
 
         // Route::get('/del/{id}', [MemberController::class, 'delete']);
         Route::post('/del', [MemberController::class, 'delete'])->name('admin.delMember');        
+    });
+
+    Route::prefix('history')->group(function(){
+        Route::get('/',[LanggananController::class,'index'])->name('listHistory');
     });
 
 });

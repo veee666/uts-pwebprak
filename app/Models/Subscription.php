@@ -16,4 +16,8 @@ class Subscription extends Model
     public function user_sub(){
         return $this->hasMany('App\Models\User','subs_id','id');
     }
+
+    public function history(){
+        return $this->hasMany('App\Models\Langganan','subs_id','id');
+    }
 }

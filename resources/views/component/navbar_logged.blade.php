@@ -18,7 +18,11 @@
             @endif
           </button>
           <div id="myDropdown" class="dropdown-content">
+            @if(Auth::user()->admin == true)
+            <a href="{{ route('dashboard-admin') }}">Dashboard</a>
+            @else
             <a href="{{ route('dashboard-user',Auth::user()->id) }}">Profile</a>
+            @endif
             <a href="{{ route('auth.logout') }}">Log Out</a>
           </div>
         </div>
