@@ -29,15 +29,13 @@ class isAdmin
                     }
                     else{
                         Auth::logout();
-                        Session::flash('Anda Bukan Admin','Login Failed');
-                        return redirect()->back()->withInput();
+                        return redirect()->back()->with('error','Not an Admin, Login Failed');
                     }
                     
                 }else{
-                    Session::flash('error-password','Login Failed');
-                    return redirect()->back()->withInput();
+                    return redirect()->back()->with('error','Wrong Credentials, Login Failed');
                 }
 
-       return back()->with('error','Anda bukan admin');
+       return back()->with('error','Not an Admin, Login Failed');
     }
 }

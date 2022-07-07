@@ -22,12 +22,14 @@ class SubsController extends Controller
 
     public function subscribe(Request $request){
         $validator = Validator::make($request->all(), [
-            'CVV' => 'max:3'
+            'CVV' => 'numeric|max:3',
+            'card_number' => 'numeric',
+            'expired_date'=>'after:today'
         ]);
 
         if ($validator->fails()) {
             // flash('error')->error();
-            return redirect()->back()->withErrors($validator)->withInput();
+            return redirect()->back()->withErrors($validator)->withInput()->with('error','Subscription gagal');
         }
 
         $user_id = Auth::user()->id;

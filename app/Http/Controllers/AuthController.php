@@ -30,7 +30,7 @@ class AuthController extends Controller
         ]);
         if ($validator->fails()) {
             // flash('error')->error();
-            return redirect()->back()->withErrors($validator)->withInput();
+            return redirect()->back()->withErrors($validator)->withInput()->with('error','Register Failed');
         }
 
         $foto_member = 'foto_member'.'_'.$request->namaMember.'.'.$request->foto->extension();
@@ -66,7 +66,7 @@ class AuthController extends Controller
 
         if ($validator->fails()) {
             // flash('error')->error();
-            return redirect()->back()->withErrors($validator)->withInput();
+            return redirect()->back()->with('error','Login Failed');
         }
 
         $credentials = $request->only('namaMember', 'password');
@@ -78,7 +78,7 @@ class AuthController extends Controller
             return redirect('/');
         }else{
             Session::flash('error-password','Login Failed');
-            return redirect()->back()->withInput();
+            return redirect()->back()->with('error','Login Failed');
         }
     }
 

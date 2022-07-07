@@ -24,7 +24,7 @@
                         <th scope="col">Nama Paket</th>
                         <th scope="col">User</th>
                         <th scope="col">Tanggal Langganan</th>
-                        <th scope="col">Tanggal Selesai Langganan</th>
+                        {{-- <th scope="col">Tanggal Selesai Langganan</th> --}}
                         <th scope="col">Status Langganan</th>
 
                     </tr>
@@ -38,7 +38,7 @@
                             <td>{{ $sub->namaPaket($sub->subs_id) }}</td>
                             <td>{{ $sub->userSubs->namaMember }}</td>
                             <td>{{ \Carbon\Carbon::parse($sub->created_at)->format('d-m-Y') }}</td>
-                            <td>{{ \Carbon\Carbon::parse($sub->end_subscription)->format('d-m-Y') }}</td>
+                            {{-- <td>{{ \Carbon\Carbon::parse($sub->end_subscription)->format('d-m-Y') }}</td> --}}
                             @php($status = \Carbon\Carbon::parse($sub->end_subscription))
                             @if ($status->isPast())
                                 <td>Expired</td>

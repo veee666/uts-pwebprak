@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Members;
+use App\Models\Langganan;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -58,6 +59,9 @@ class MemberController extends Controller
     public function stopSubscription(Request $request){
         $member = User::where('id',$request->id)->update([
             'subs_id'=>null
+        ]);
+        Langganan::where('user_id',$request->id)->update([
+            'end_subscription' =>Carbon::yesterday()->format('Y-m-d')
         ]);
         return redirect()->back();
     }
