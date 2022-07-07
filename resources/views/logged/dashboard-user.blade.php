@@ -40,7 +40,8 @@
                     {{ $member->namaPaket(Auth::user()->subs_id)->nama_paket }}
                     <form method="post" action="{{ route('stop_subscription',Auth::user()->id) }}">
                         @csrf
-                        <button type="button" class="btn btn-danger deleteBtn" id="delsub" value="{{ $member->namaPaket(Auth::user()->subs_id)->nama_paket }}" href="">Stop Subscription</button>
+                        @method('delete')
+                        <button type="button" class="btn btn-danger deleteBtn" id="delsub" value="{{ $member->namaPaket(Auth::user()->subs_id)->nama_paket }}">Stop Subscription</button>
                     </form>
                 @else 
                     <p>You have not yet subscribe to any plan</p>
@@ -52,6 +53,7 @@
                   <div class="modal-content">
                     <form action="{{ route('stop_subscription',Auth::user()->id) }}" method="POST">
                         @csrf
+                        @method('delete')
                         {{-- @method('delete') --}}
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Hapus Subscription?</h5>
